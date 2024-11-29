@@ -1,7 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 
-const DOMAIN = 'http://localhost:8080';
+const DOMAIN = process.env.REACT_APP_SERVER_IP;
 
 const API_DOMAIN = `${DOMAIN}/api/v1`;
 
