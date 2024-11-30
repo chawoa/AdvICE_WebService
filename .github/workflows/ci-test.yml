@@ -50,13 +50,13 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Change manifest
-        run: sed -i "s|woya031/ci-ice-front:[^ ]*|woya031/ci-ice-front:${{ env.TAG }}|" k8s/main.yaml
+        run: sed -i "s|woya031/ci-ice-front:[^ ]*|woya031/ci-ice-front:${{ env.TAG }}|" k8s/front-main.yaml
 
       - name: git push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config credential.helper store
-          git add k8s/main.yaml
+          git add k8s/front-main.yaml
           git commit -m ":tada: Update: Image [${{ env.TAG }}]"
           git push
