@@ -33,7 +33,7 @@ jobs:
           echo "MAIL_PASSWORD=${{ secrets.MAIL_PW }}" >> .env
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./backend/gradlew build
         
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
