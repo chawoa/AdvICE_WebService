@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ice-coding
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - image: mysql:8.0
+          name: mysql
+          env:
+            - name: MYSQL_USER
+              value: been1
+            - name: MYSQL_PASSWORD
+              value: P!ssw0rd
+            - name: MYSQL_DATABASE # 구성할 database명
+              value: ICEBREAKER
+            - name: MYSQL_ROOT_HOST # 접근 호스트
+              value: "%"
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-volumeclaim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: ice-coding
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3306
+      targetPort: 3306
+      protocol: TCP
+  selector:
+    app: mysql
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  namespace: ice-coding
+  name: mysql-volumeclaim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: rook-ceph-block
