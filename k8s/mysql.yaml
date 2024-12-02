@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: ice-coding
+  namespace: cicd-ice-coding
   name: mysql
   labels:
     app: mysql
@@ -46,7 +46,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: ice-coding
+  namespace: cicd-ice-coding
   name: mysql
   labels:
     app: mysql
@@ -62,7 +62,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  namespace: ice-coding
+  namespace: cicd-ice-coding
   name: mysql-volumeclaim
 spec:
   accessModes:
