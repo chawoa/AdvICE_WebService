@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: cicd-ice-front
-          image: woya031/ci-ice-front:1.2.4
+          image: woya031/ci-ice-front:1.2.7
           ports:
             - containerPort: 3000
 ---
