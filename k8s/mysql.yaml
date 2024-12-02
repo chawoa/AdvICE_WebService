@@ -19,6 +19,8 @@ spec:
         - image: mysql:8.0
           name: mysql
           env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: P!ssw0rd
             - name: MYSQL_USER
               value: been1
             - name: MYSQL_PASSWORD
