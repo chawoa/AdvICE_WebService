@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-ice-back-deploy
+  namespace: cicd-ice-coding
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: cicd-ice-coding
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: cicd-ice-coding
+    spec:
+      containers:
+        - name: cicd-ice-back
+          image: woya031/ice-back:1.5
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql:3306/ICEBREAKER?serverTimezone=UTC&characterEncoding=UTF-8
+          ports:
+            - containerPort: 4000
+            - containerPort: 587
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicd-ice-back-service
+  namespace: cicd-ice-coding
+spec:
+  selector:
+    app.kubernetes.io/name: cicd-ice-coding
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 4001
+      targetPort: 4000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicd-ice-back-smtp
+  namespace: cicd-ice-coding
+spec:
+  selector:
+    app.kubernetes.io/name: cicd-ice-coding
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 5871
+      targetPort: 587
