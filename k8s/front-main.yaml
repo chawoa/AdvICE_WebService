@@ -16,6 +16,9 @@ spec:
       containers:
         - name: cicd-ice-front
           image: woya031/ci-ice-front:1.2.7
+          envFrom:
+            - configMapRef:
+                name: frontend-config
           ports:
             - containerPort: 3000
 ---
