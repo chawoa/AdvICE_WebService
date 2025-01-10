@@ -18,17 +18,9 @@ spec:
       containers:
         - image: mysql:8.0
           name: mysql
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: P!ssw0rd
-            - name: MYSQL_USER
-              value: been1
-            - name: MYSQL_PASSWORD
-              value: P!ssw0rd
-            - name: MYSQL_DATABASE # 구성할 database명
-              value: ICEBREAKER
-            - name: MYSQL_ROOT_HOST # 접근 호스트
-              value: "%"
+          envFrom:
+            - configMapRef:
+              name: mysql-config
           ports:
             - containerPort: 3306
               name: mysql
