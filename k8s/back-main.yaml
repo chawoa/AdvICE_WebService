@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: cicd-ice-back
-          image: woya031/ci-ice-back:1.3.3
+          image: woya031/ci-ice-back:1.5.9
           envFrom:
             - configMapRef:
                 name: backend-config
