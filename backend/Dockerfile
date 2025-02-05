@@ -6,6 +6,6 @@ COPY build/libs/*.jar app.jar
 RUN mkdir -p backend
 COPY .env backend/.env
 
-EXPOSE 4000
+EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
