@@ -20,7 +20,7 @@ spec:
             - configMapRef:
                 name: backend-config
           ports:
-            - containerPort: 4000
+            - containerPort: 8080
             - containerPort: 587
 ---
 apiVersion: v1
@@ -35,7 +35,7 @@ spec:
   ports:
     - protocol: TCP
       port: 4001
-      targetPort: 4000
+      targetPort: 8080
 ---
 apiVersion: v1
 kind: Service
