@@ -2,7 +2,7 @@
   <img width="900" alt="프로젝트 스크린샷" src="https://github.com/user-attachments/assets/4a711bee-0c04-4248-990a-b7f3a127300f">
 </a> 
   
-<br/>
+<br/> 
 <br/>
 # 1. 프로젝트 개요 
 - **서비스 이름**: AdvICE
